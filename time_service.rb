@@ -1,5 +1,3 @@
-# require_relative 'another.rb'
-
 module TimeService
 
   class Another
@@ -20,8 +18,8 @@ module TimeService
       else
         @time_hour[1] = future_time
       end
-      @time_ampm = 'PM'; @time_hour[0] %= 12 if @time_hour[0] >= 11 if @time_ampm == 'AM'
-      @time_ampm = 'AM'; @time_hour[0] %= 12 if @time_hour[0] >= 11 if @time_ampm == 'PM'
+      @time_ampm, @time_hour[0] = 'PM', @time_hour[0] % 12 if @time_hour[0] >= 12 if @time_ampm == 'AM'
+      @time_ampm, @time_hour[0] = 'AM', @time_hour[0] % 12 if @time_hour[0] >= 12 if @time_ampm == 'PM'
       puts "#{@time_hour[0]}:#{@time_hour[1]} #{@time_ampm}"
     end
   end
