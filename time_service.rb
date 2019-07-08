@@ -1,17 +1,17 @@
 module TimeService
 
-  class Another
+  class Second
 
-    def initialize(time, shift)
+    def initialize(time, add_minutes)
       @time = time.split(' ')
       @time_hour = @time[0].split(':').map(&:to_i)
       @time_ampm = @time[1].upcase
-      @shift = shift
+      @add_minutes = add_minutes
       time_shift
     end
 
     def time_shift
-      future_time = @time_hour[1] + @shift
+      future_time = @time_hour[1] + @add_minutes
       if future_time > 59
         @time_hour[0] += future_time / 60
         @time_hour[1] = future_time % 60
@@ -24,7 +24,7 @@ module TimeService
     end
   end
 
-  class First < Another
+  class First < Second
   end
 
 end
